@@ -1,3 +1,11 @@
+#docker volumes
+config/.jupyter
+config/ssl
+notebooks/private
+
+#jupyter notebook
+.ipynb_checkpoints
+
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]
