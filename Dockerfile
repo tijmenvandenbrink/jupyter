@@ -4,9 +4,9 @@ FROM python:2
 LABEL maintainer "Tijmen van den Brink"
 
 # BUILD ARGS
-ENV certfile_arg
-ENV keyfile_arg
-ENV configfile_arg
+ENV certfile_arg=${certfile_arg:-""} \
+ keyfile_arg=${keyfile_arg:-""} \
+ configfile_arg=${configfile_arg:-""}
 
 # Set the working directory to /notebooks
 WORKDIR /notebooks
@@ -26,4 +26,5 @@ VOLUME /config
 
 # Run jupyter when the container launches
 #CMD ["jupyter", "notebook", "--allow-root", "--no-browser", "--ip=0.0.0.0", "--certfile=/config/ssl/fullchain.pem", "--keyfile=/config/ssl/privkey.pem", "--config=/config/.jupyter/jupyter_notebook_config.py"]
-CMD ["jupyter", "notebook", "--allow-root", "--no-browser", "--ip=0.0.0.0", ${certfile_arg}, ${keyfile_arg}, ${configfile_arg}]
+CMD jupyter notebook --allow-root --no-browser --ip=0.0.0.0 ${certfile_arg} ${keyfile_arg} ${configfile_arg}
+#CMD ["jupyter", "notebook", "--allow-root", "--no-browser", "--ip=0.0.0.0"]

@@ -11,12 +11,12 @@ docker build -t jupyter:1.1 .
 
 ## On linux
 ```
-docker run -p 8888:8888 -v "<ABSOLUTEPATH_ON_HOST>/notebooks:/notebooks" -v "<ABSOLUTEPATH_ON_HOST>/config:/config jupyter:1.1
+docker run -p 8888:8888 -v "<ABSOLUTEPATH_ON_HOST>/notebooks:/notebooks" -v "<ABSOLUTEPATH_ON_HOST>/config:/config" jupyter:1.1
 ```
 
 ## On windows
 ```
-docker run -p 8888:8888 -v "<ABSOLUTEPATH_ON_HOST>\notebooks:/notebooks" -v "<ABSOLUTEPATH_ON_HOST>\config:/config" jupyter:1.0
+docker run -p 8888:8888 -v "<ABSOLUTEPATH_ON_HOST>\notebooks:/notebooks" -v "<ABSOLUTEPATH_ON_HOST>\config:/config" jupyter:1.1
 ```
 
 # Secure your container by enabling SSL
