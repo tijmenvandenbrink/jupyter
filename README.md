@@ -1,4 +1,10 @@
 # Jupyter
+This is a simple Jupyter image, including SSL support. In order to use this image effectively, you'll need to mount:
+
+* /somepath/on/host/notebooks for your site content (e.g. using "-v /home/jdoe/notebooks/:/notebooks")
+* /somepath/on/host/config, optionally, if you want to store your customized config and/or SSL keys outside the container (e.g. using "-v /home/jdoe/config/:/config")
+* optionally, if you wish to use SSL with real keys you can create a directory config/ssl and place your real keys there
+
 Run a Jupyter notebook docker container in seconds. Enable SSL and use custom config for jupyter.
 
 # Build the image
@@ -45,5 +51,5 @@ You can store this string in the config file
 ## 
 Pass the following env variable when running the container to ensure jupyter uses the alternative config file:
 ```
--e config_arg="--config=/config/.jupyter/jupyter_notebook_config.py"
+-e configfile_arg="--config=/config/.jupyter/jupyter_notebook_config.py"
 ```
