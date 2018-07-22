@@ -11,5 +11,10 @@ pipeline {
         sh 'docker build -t jupyter:latest .'
       }
     }
+    stage('Test') {
+      steps {
+        sh 'echo "Foo!"'
+      }
+    }
   }
 }
