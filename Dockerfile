@@ -24,6 +24,8 @@ EXPOSE 8888
 VOLUME /notebooks
 VOLUME /config
 
+USER 1010
+
 # Run jupyter when the container launches
 #CMD ["jupyter", "notebook", "--allow-root", "--no-browser", "--ip=0.0.0.0", "--certfile=/config/ssl/fullchain.pem", "--keyfile=/config/ssl/privkey.pem", "--config=/config/.jupyter/jupyter_notebook_config.py"]
 CMD jupyter notebook --allow-root --no-browser --ip=0.0.0.0 ${certfile_arg} ${keyfile_arg} ${configfile_arg}
