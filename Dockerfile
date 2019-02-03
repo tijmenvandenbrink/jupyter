@@ -3,13 +3,14 @@ FROM python:2
 
 LABEL maintainer "Tijmen van den Brink"
 
+RUN groupadd -g 1000 jupyter && \
+    useradd -r -m -u 1000 -g jupyter jupyter
+
 # BUILD ARGS
 ENV certfile_arg=${certfile_arg:-""} \
  keyfile_arg=${keyfile_arg:-""} \
  configfile_arg=${configfile_arg:-""}
 
-# Set the working directory to /notebooks
-WORKDIR /notebooks
 
 # Copy the current directory contents into the container at /notebooks
 #ADD . /notebooks
@@ -24,9 +25,13 @@ EXPOSE 8888
 VOLUME /notebooks
 VOLUME /config
 
-USER 1010
+USER jupyter
+
+# Set the working directory to /notebooks
+WORKDIR /home/jupyter
 
 # Run jupyter when the container launches
 #CMD ["jupyter", "notebook", "--allow-root", "--no-browser", "--ip=0.0.0.0", "--certfile=/config/ssl/fullchain.pem", "--keyfile=/config/ssl/privkey.pem", "--config=/config/.jupyter/jupyter_notebook_config.py"]
-CMD jupyter notebook --allow-root --no-browser --ip=0.0.0.0 ${certfile_arg} ${keyfile_arg} ${configfile_arg}
+
+CMD jupyter notebook --no-browser --ip=0.0.0.0 ${certfile_arg} ${keyfile_arg} ${configfile_arg}
 #CMD ["jupyter", "notebook", "--allow-root", "--no-browser", "--ip=0.0.0.0"]
